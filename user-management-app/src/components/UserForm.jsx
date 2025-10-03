@@ -5,6 +5,7 @@ import { addUser, updateUser } from "../redux/userSlice";
 export default function UserForm({ initialData = null, onClose = null } = {}) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [error, setError] = useState("");
@@ -73,7 +74,7 @@ export default function UserForm({ initialData = null, onClose = null } = {}) {
       {success && <p className="success">{success}</p>}
 
       <button type="submit" className="btn-primary">
-        {initialData && initialData.id ? 'Save Changes' : '＋ Add User'}
+        {initialData && initialData.id ? 'Save Changes' : ' Add User'}
       </button>
     </form>
   );
