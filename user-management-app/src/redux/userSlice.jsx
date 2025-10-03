@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// 📥 Fetch users nga API
+
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await response.json();
@@ -16,22 +16,29 @@ const userSlice = createSlice({
     searchQuery: "",
   },
   reducers: {
-    // ➕ Shto përdorues të ri (lokalisht)
     addUser: (state, action) => {
+      const companyVal = action.payload.company;
+      const companyObj = companyVal
+        ? typeof companyVal === "string"
+          ? { name: companyVal }
+          : companyVal.name
+          ? companyVal
+          : { name: String(companyVal) }
+        : { name: "Local User" };
+
       const newUser = {
         ...action.payload,
-        id: Date.now(), // ID unike lokale
-        company: { name: action.payload.company || "Local User" },
+        id: Date.now(),
+        company: companyObj,
       };
       state.list.unshift(newUser);
     },
 
-    // 🗑️ Fshi përdorues
+  
     deleteUser: (state, action) => {
       state.list = state.list.filter((u) => u.id !== action.payload);
     },
 
-    // ✏️ Përditëso përdorues
     updateUser: (state, action) => {
       const { id, updatedData } = action.payload;
       const index = state.list.findIndex((u) => u.id === id);
@@ -40,7 +47,6 @@ const userSlice = createSlice({
       }
     },
 
-    // 🔍 Ruaj kërkimin
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
     },

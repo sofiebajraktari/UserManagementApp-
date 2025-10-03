@@ -11,8 +11,8 @@ export default function UserDetails() {
   if (!user) {
     return (
       <div style={styles.container}>
-        <h2>User Not Found ❌</h2>
-        <Link to="/" style={styles.backBtn}>⬅️ Back to Users</Link>
+        <h2>User Not Found </h2>
+        <Link to="/users" style={styles.backBtn}>⬅️ Back to Users</Link>
       </div>
     );
   }
@@ -22,9 +22,12 @@ export default function UserDetails() {
       <h2 style={styles.title}>👤 {user.name}</h2>
       <p><strong>Email:</strong> {user.email}</p>
       <p><strong>Company:</strong> {user.company?.name || "N/A"}</p>
+      <p><strong>Phone:</strong> {user.phone || "N/A"}</p>
+      <p><strong>Website:</strong> {user.website || "N/A"}</p>
+      <p><strong>Address:</strong> {user.address ? `${user.address.suite || ''} ${user.address.street || ''} ${user.address.city || ''} ${user.address.zipcode || ''}` : 'N/A'}</p>
       <p><strong>ID:</strong> {user.id}</p>
 
-      <Link to="/" style={styles.backBtn}>⬅️ Back to Users</Link>
+      <Link to="/users" style={styles.backBtn}>⬅️ Back to Users</Link>
     </div>
   );
 }

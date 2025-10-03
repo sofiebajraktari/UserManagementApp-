@@ -1,32 +1,25 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchQuery } from "../redux/userSlice";
 
-export default function SearchBar({ query, onSearch }) {
+export default function SearchBar({ queryProp = undefined, onSearchProp = undefined }) {
+  const dispatch = useDispatch();
+  const query = useSelector((s) => s.users.searchQuery);
+
+  const handle = (value) => {
+    if (onSearchProp) onSearchProp(value);
+    dispatch(setSearchQuery(value));
+  };
+
   return (
-    <div style={styles.container}>
+    <div className="search-container">
       <input
         type="text"
         placeholder="Search by name or email..."
-        value={query}
-        onChange={(e) => onSearch(e.target.value)}
-        style={styles.input}
+        value={queryProp !== undefined ? queryProp : query}
+        onChange={(e) => handle(e.target.value)}
+        className="search-input"
       />
     </div>
   );
 }
-
-const styles = {
-  container: {
-    marginBottom: "16px",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-  },
-  input: {
-    width: "100%",
-    maxWidth: "400px",
-    padding: "10px 14px",
-    fontSize: "1rem",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-  },
-};
