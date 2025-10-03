@@ -19,7 +19,7 @@ export default function UserDetails() {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>👤 {user.name}</h2>
+      <h2 style={styles.title}> {user.name}</h2>
       <p><strong>Email:</strong> {user.email}</p>
       <p><strong>Company:</strong> {user.company?.name || "N/A"}</p>
       <p><strong>Phone:</strong> {user.phone || "N/A"}</p>
@@ -27,7 +27,7 @@ export default function UserDetails() {
       <p><strong>Address:</strong> {user.address ? `${user.address.suite || ''} ${user.address.street || ''} ${user.address.city || ''} ${user.address.zipcode || ''}` : 'N/A'}</p>
       <p><strong>ID:</strong> {user.id}</p>
 
-      <Link to="/users" style={styles.backBtn}>⬅️ Back to Users</Link>
+      <Link to="/users" style={styles.backBtn}>Back to Users</Link>
     </div>
   );
 }

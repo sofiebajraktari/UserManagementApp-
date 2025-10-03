@@ -27,7 +27,7 @@ export default function Home() {
       <header className="hero">
         <div className="hero-inner">
           <h1 className="hero-title">User Management</h1>
-          <p className="hero-sub">Manage users — add, search, and view details quickly.</p>
+          <p className="hero-sub">Manage users add, search, and view details quickly.</p>
         </div>
       </header>
 

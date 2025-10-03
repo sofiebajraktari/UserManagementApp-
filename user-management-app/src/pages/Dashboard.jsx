@@ -14,7 +14,7 @@ export default function Dashboard(){
   React.useEffect(() => {
     setPage(1);
   }, [search]);
-  // reset page when sort changes as well
+  
   React.useEffect(() => { setPage(1); }, [sortBy, sortDir]);
   const pageSize = 10;
   const sorted = [...users].sort((a,b)=>{
